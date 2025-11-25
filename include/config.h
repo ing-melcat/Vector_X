@@ -3,32 +3,29 @@
 #include <Arduino.h>
 
 namespace Config {
-    // --- CONEXIÓN WIFI ---
-    static const char* SSID = "VECTOR-X_PROTOTYPE";
+    // --- WIFI ---
+    static const char* SSID = "Vector-X";
     static const char* PASSWORD = "Unipoli_2026";
 
-    // --- PINES DE MOTORES (Puente H L298N) ---
-    // Dirección
+    // --- PINES DE DIRECCIÓN MOTORES ---
     static const int MTR_POS_IZQ = 12; 
     static const int MTR_NEG_IZQ = 13;
-    static const int MTR_POS_DER = 2;  // Nota: GPIO 2 es el LED integrado
-    static const int MTR_NEG_DER = 4;  // Nota: GPIO 4 es el Flash LED
+    static const int MTR_POS_DER = 2;
+    static const int MTR_NEG_DER = 4;
 
-    // Velocidad (PWM)
+    // --- PINES DE VELOCIDAD/POTENCIA (PWM) ---
     static const int MTR_ENA = 15; 
     static const int MTR_ENB = 14;
     
-    // Velocidad global (0-255)
-    static const int VELOCIDAD = 180;
+    // Velocidad global (0-255) - 180 es una buena velocidad media/baja
+    static const int VELOCIDAD = 60;
 
-    // --- SENSOR ULTRASÓNICO ---
-    // ADVERTENCIA: GPIO 1 es TX (Serial). 
-    // Si tienes el sensor conectado aquí, no podrás ver el Monitor Serie.
-    static const int TRIG_PIN = 3;
-    static const int ECHO_PIN = 16;
-    static const float DISTANCIA_MINIMA = 100.0; // cm
+    // --- PINES ULTRASONICO ---
+    static const int TRIG_PIN = 0;  // TX0 (Cuidado al subir código)
+    static const int ECHO_PIN = 3;
+    static const float DISTANCIA_MINIMA = 100.0; // Ajustado a 25cm para frenar con tiempo
 
-    // --- PINES CÁMARA (AI THINKER) ---
+    // --- PINES CAMARA (ESP32-CAM AI THINKER) ---
     static const int PWDN_GPIO_NUM  = 32;
     static const int RESET_GPIO_NUM = -1;
     static const int XCLK_GPIO_NUM  = 0;
@@ -46,5 +43,4 @@ namespace Config {
     static const int HREF_GPIO_NUM  = 23;
     static const int PCLK_GPIO_NUM  = 22;
 }
-
 #endif

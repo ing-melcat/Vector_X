@@ -9,19 +9,28 @@ Motor::Motor(int pi, int ni, int pd, int nd, int ena, int enb, int velocidad) {
     this->pin_enb = enb;
     this->velocidad_actual = velocidad;
 
+    // Configurar pines de dirección
     pinMode(pos_izq, OUTPUT);
     pinMode(neg_izq, OUTPUT);
     pinMode(pos_der, OUTPUT);
     pinMode(neg_der, OUTPUT);
-    pinMode(pin_ena, OUTPUT);
-    pinMode(pin_enb, OUTPUT);
+
+    // --- CONFIGURACIÓN PWM SEGURA ---
+    // Usamos canales 12 y 13 (Low Speed) para no matar la cámara
+    ledcSetup(canal_a, frecuencia, resolucion);
+    ledcSetup(canal_b, frecuencia, resolucion);
+
+    // Adjuntar canales a los pines físicos
+    ledcAttachPin(pin_ena, canal_a);
+    ledcAttachPin(pin_enb, canal_b);
 
     detener(); 
 }
 
 void Motor::aplicarPotencia(int potencia) {
-    analogWrite(pin_ena, potencia);
-    analogWrite(pin_enb, potencia);
+    int p = constrain(potencia, 0, 255);
+    ledcWrite(canal_a, p);
+    ledcWrite(canal_b, p);
 }
 
 void Motor::setVelocidad(int nueva_velocidad) {

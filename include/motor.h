@@ -9,21 +9,26 @@ class Motor {
         int pin_ena, pin_enb;
         int velocidad_actual;
 
-        // Método privado para aplicar PWM
+        // --- CONFIGURACIÓN PWM ---
+        // CAMBIO CRÍTICO: Usamos canales altos (12 y 13).
+        // Estos canales usan los Timers de "Baja Velocidad" del ESP32.
+        // Así NO tocan el Timer 0 que usa la cámara para el XCLK.
+        const int frecuencia = 1000; 
+        const int resolucion = 8;    
+        const int canal_a = 12;       // Canal seguro 1
+        const int canal_b = 13;       // Canal seguro 2
+
         void aplicarPotencia(int potencia);
 
     public:
-        // Constructor
         Motor(int pi, int ni, int pd, int nd, int ena, int enb, int velocidad);
         
-        // Control de movimiento
         void avanzar();
         void detener();
         void derecha();
         void izquierda();
         void retroceder();
         
-        // Ajuste dinámico de velocidad
         void setVelocidad(int nueva_velocidad);
 };
 
