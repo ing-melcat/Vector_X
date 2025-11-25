@@ -111,7 +111,7 @@ void atenderClienteWeb() {
 }
 
 // ==========================================
-// 5. SETUP (ESTABILIZADO)
+// 5. SETUP 
 // ==========================================
 void setup() {
     // DESACTIVAR DETECTOR DE BAJONES DE LUZ (Evita reinicios)
