@@ -1,16 +1,14 @@
 #ifndef APP_HTTPD_H
 #define APP_HTTPD_H
 
-#include <Arduino.h> // Para usar String
+#include <Arduino.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 void startCameraServer();
-
-// Nueva función para enviar texto a la web
-void logToWeb(String mensaje);
+void logToWeb(String mensaje); // <--- ESTA LINEA ES IMPORTANTE
 
 #ifdef __cplusplus
 }

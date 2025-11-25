@@ -9,7 +9,7 @@ Ultrasonico::Ultrasonico(int trig, int echo) {
 
 float Ultrasonico::leer_distancia() {
     digitalWrite(trigPin, LOW);
-    delayMicroseconds(2);
+    delayMicroseconds(10);
     digitalWrite(trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(trigPin, LOW);
